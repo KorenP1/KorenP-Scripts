@@ -1,6 +1,7 @@
+apt update
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-echo -e "\n" >> $HOME/.zshrc
 echo "# FROM cool-zsh-pt.sh SCRIPT" >> $HOME/.zshrc
 
 echo "ZSH_THERE=fino" >> $HOME/.zshrc
@@ -27,7 +28,7 @@ echo "alias l.='exa -a --icons | egrep \"^\.\"'" >> $HOME/.zshrc
 
 mkdir -p $HOME/.config/kitty
 
-cat <<EOF > $HOME/.config/kitty/kitty.conf
+cat <<'EOF' > /root/.config/kitty/kitty.conf
 # updated to include the tokyonights color scheme
 
 # Font Settings
@@ -221,7 +222,7 @@ macos_titlebar_color background
 allow_remote_control yes
 EOF
 
-cat <<EOF > $HOME/.tmux.conf
+cat <<'EOF' > /root/.tmux.conf
 #
 # inspired by Ham Vocke's and milosz's config files:
 # https://www.hamvocke.com/blog/a-guide-to-customizing-your-tmux-conf/
