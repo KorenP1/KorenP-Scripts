@@ -19,6 +19,9 @@ apt install -y exa
 apt install -y ccrypt
 apt install -y kitty
 
+sed -i '/source $ZSH\/oh-my-zsh.sh/d' $HOME/.zshrc
+echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
+
 echo "alias cat='ccat'" >> $HOME/.zshrc
 echo "alias ls='exa -a --color=always --group-directories-first --icons' #my preferred listing" >> $HOME/.zshrc
 echo "alias la='exa -a --color=always --group-directories-first --icons'  # all files and dirs" >> $HOME/.zshrc
@@ -306,6 +309,3 @@ set -g message-style 'fg=colour255 bg=colour62'
 
 setw -g mode-keys vi
 EOF
-
-sed -i '/source $ZSH\/oh-my-zsh.sh/d' $HOME/.zshrc
-echo "source \$ZSH/oh-my-zsh.sh" >> $HOME/.zshrc
