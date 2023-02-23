@@ -5,7 +5,10 @@ cp mapping.txt mapping.txt.new
 
 sed -i "/registry.redhat.io\/redhat\/.*-operator-index:v/d" mapping.txt.new
 sed -i 's/@.*=/=/' mapping.txt.new
-sed -i "s/.\{0,9\}$//; /^$/d" mapping.txt.new
+
+MAPPING=`cat mapping.txt.new`
+echo "$MAPPING" | grep -o ".*:.*:" > mapping.txt.new
+sed -i 's/.$//g' mapping.txt.new
 
 echo "apiVersion: operator.openshift.io/v1alpha1
 kind: ImageContentSourcePolicy
