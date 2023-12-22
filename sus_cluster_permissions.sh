@@ -15,7 +15,7 @@ if ! which yq > /dev/null; then echo; echo -e "${RED}You must have 'yq v4.18' or
 
 
 function findRoleRef {
-  echo "$YAML" | yq 'map(select(.roleRef.name == "'$1'")) | del(.[].roleRef)' | sed 's/^- kind:/\n- kind:/g'
+  echo "$YAML" | yq 'map(select(.roleRef.name == "'"$1"'")) | del(.[].roleRef)' | sed 's/^- kind:/\n- kind:/g'
   echo
 }
 
@@ -23,11 +23,11 @@ YAML=`oc get rolebindings,clusterrolebindings -A -o yaml | yq 'del(.items[] ["ap
 
 for roleRef in cluster-admin `oc get scc -o name | cut -d / -f 2 | sed s/^/system:openshift:scc:/g`;
 do
-  customRoleRef=`echo $roleRef | tr '[:lower:]' '[:upper:]' | cut -d : -f 4`
+  customRoleRef=`echo "$roleRef" | tr '[:lower:]' '[:upper:]' | cut -d : -f 4`
   echo -n -e "${UL_WHITE}${BG_RED}"
   [ "$roleRef" == "cluster-admin" ] && echo -n -e "$customRoleRef": || echo -n -e "SCC $customRoleRef":
   echo -e "${NO_COLOR}"
-  findRoleRef $roleRef
+  findRoleRef "$roleRef"
 done
 
 echo
