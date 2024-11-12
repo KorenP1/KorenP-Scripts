@@ -1,0 +1,1 @@
+oc get pods -A -o custom-columns=NAME:.metadata.name,NAMESPACE:.metadata.namespace,ownerReference:.metadata.ownerReferences[].kind | grep '<none>' | grep -v "$DOMAIN" | awk '{print $1, $2}' | sed '1 i\NAME NAMESPACE' | column -t
