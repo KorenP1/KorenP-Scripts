@@ -1,1 +1,1 @@
-# KorenP-Scripts
+# Bash Scripts :)
